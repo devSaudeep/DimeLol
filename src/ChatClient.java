@@ -10,7 +10,6 @@ import java.net.Socket;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.*;
-
 public class ChatClient{
 
 	BufferedReader in;
