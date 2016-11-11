@@ -5,14 +5,9 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
-/**
- * 
- */
 
 /**
  * @author LuisJonuel
@@ -43,12 +38,10 @@ public class ChatServer {
 	 * spawns handler threads.
 	 */
 
-
 	//Create a sever status window
 
 	private static JFrame frame = new JFrame("Server");
 	private static JTextArea statusArea = new JTextArea(8, 40);
-
 
 	/**
 	 * A handler thread class.  Handlers are spawned from the listening
@@ -162,7 +155,6 @@ public class ChatServer {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
 
 		System.out.println("The chat server is running.");
 		ServerSocket listener = new ServerSocket(PORT);

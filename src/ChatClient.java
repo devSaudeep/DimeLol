@@ -1,9 +1,4 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import java.awt.Panel;
 import java.awt.Color;
-
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.Socket;
@@ -25,6 +20,7 @@ public class ChatClient{
 	 * however that the textfield is initially NOT editable, and
 	 * only becomes editable AFTER the client receives the NAMEACCEPTED
 	 * message from the server.
+	 * @param caller 
 	 */
 	public ChatClient() {
 
@@ -77,7 +73,7 @@ public class ChatClient{
 	/**
 	 * Connects to the server then enters the processing loop.
 	 */
-	private void run() throws IOException {
+	public void run() throws IOException {
 
 		// Make connection and initialize streams
 		String serverAddress = getServerAddress();
@@ -117,11 +113,7 @@ public class ChatClient{
 					}
 				}	
 			});
-
-
-
 		}
-
 	}
 
 	/**
@@ -129,8 +121,7 @@ public class ChatClient{
 	 */
 	public static void main(String[] args) throws Exception {
 		ChatClient client = new ChatClient();
-		client.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
+//		client.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		client.frame.setVisible(true);
 		client.run();
 	}
