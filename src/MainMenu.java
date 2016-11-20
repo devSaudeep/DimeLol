@@ -4,7 +4,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
@@ -22,7 +21,7 @@ public class MainMenu extends JFrame {
 	private JButton enterChatButton;
 
 	public MainMenu() {
-		setTitle("DimeLol");
+		this.setTitle("DimeLol");
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		buildMainMenuPanel();
@@ -76,13 +75,6 @@ public class MainMenu extends JFrame {
 			String[] args = {"123"};
 			String address = serverIPTextField.getText();
 			String name = usernameTextField.getText();
-
-			try {
-				ChatClient.main(args);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 	}
 

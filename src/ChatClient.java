@@ -5,13 +5,14 @@ import java.net.Socket;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.*;
-public class ChatClient{
 
-	BufferedReader in;
-	PrintWriter out;
-	JFrame frame = new JFrame("DimeloL");
-	JTextField textField = new JTextField(40);
-	JTextArea messageArea = new JTextArea(8, 40);
+public class ChatClient {
+
+	static BufferedReader in;
+	static PrintWriter out;
+	static JFrame frame = new JFrame("DimeloL");
+	static JTextField textField = new JTextField(40);
+	static JTextArea messageArea = new JTextArea(8, 40);
 
 	/**
 	 * Constructs the client by laying out the GUI and registering a
@@ -21,8 +22,9 @@ public class ChatClient{
 	 * only becomes editable AFTER the client receives the NAMEACCEPTED
 	 * message from the server.
 	 * @param caller 
+	 * @throws IOException 
 	 */
-	public ChatClient() {
+	public ChatClient() throws IOException {
 
 		// Layout GUI
 		textField.setEditable(false);
@@ -46,12 +48,15 @@ public class ChatClient{
 				textField.setText("");
 			}
 		});
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setVisible(true);
+		run();
 	}
 
 	/**
 	 * Prompt for and return the address of the server.
 	 */
-	private String getServerAddress() {
+	public static String getServerAddress() {
 		return JOptionPane.showInputDialog(
 				frame,
 				"Enter IP Address of the Server:",
@@ -74,7 +79,6 @@ public class ChatClient{
 	 * Connects to the server then enters the processing loop.
 	 */
 	public void run() throws IOException {
-
 		// Make connection and initialize streams
 		String serverAddress = getServerAddress();
 		Socket socket = new Socket(serverAddress, 9001);
@@ -109,20 +113,13 @@ public class ChatClient{
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
 
 						System.exit(0);
-
 					}
 				}	
 			});
 		}
 	}
-
-	/**
-	 * Runs the client as an application with a closeable frame.
-	 */
-	public static void main(String[] args) throws Exception {
-		ChatClient client = new ChatClient();
-//		client.frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		client.frame.setVisible(true);
-		client.run();
+	
+	public static void main(String[] args) throws IOException {
+		new ChatClient();
 	}
 }
