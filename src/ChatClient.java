@@ -60,9 +60,7 @@ public class ChatClient {
 				enterChat.ip = enterChat.ip_textField.getText();
 				enterChat.setVisible(false);
 				enterChat.dispose();
-
-
-
+				//hey
 				frame.setVisible(true);
 			}
 		});
