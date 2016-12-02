@@ -10,9 +10,10 @@ public class ChatClient {
 
 	static BufferedReader in;
 	static PrintWriter out;
-	static JFrame frame = new JFrame("DimeloL");
+	public static JFrame frame = new JFrame("DimeloL");
 	static JTextField textField = new JTextField(40);
 	static JTextArea messageArea = new JTextArea(8, 40);
+	static EnterChat enterChat = new EnterChat();
 
 	/**
 	 * Constructs the client by laying out the GUI and registering a
@@ -23,10 +24,11 @@ public class ChatClient {
 	 * message from the server.
 	 * @param caller 
 	 * @throws IOException 
+	 * @throws InterruptedException 
 	 */
-	public ChatClient() throws IOException {
-
+	public ChatClient() throws IOException, InterruptedException {
 		// Layout GUI
+
 		textField.setEditable(false);
 		messageArea.setEditable(false);
 		messageArea.setForeground(Color.WHITE);
@@ -49,30 +51,52 @@ public class ChatClient {
 			}
 		});
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.setVisible(true);
+		//		frame.setVisible(false);
+
+		enterChat.setVisible(true);
+		enterChat.btnEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				enterChat.username = enterChat.username_textField.getText();
+				enterChat.ip = enterChat.ip_textField.getText();
+				enterChat.setVisible(false);
+				enterChat.dispose();
+
+
+
+				frame.setVisible(true);
+			}
+		});
+		
+		
 		run();
+
 	}
+
 
 	/**
 	 * Prompt for and return the address of the server.
 	 */
 	public static String getServerAddress() {
-		return JOptionPane.showInputDialog(
-				frame,
-				"Enter IP Address of the Server:",
-				"Welcome to the Chatter",
-				JOptionPane.QUESTION_MESSAGE);
+		//		return JOptionPane.showInputDialog(
+		//				frame,
+		//				"Enter IP Address of the Server:",
+		//				"Welcome to the Chatter",
+		//				JOptionPane.QUESTION_MESSAGE);
+		System.out.println(enterChat.getIP());
+		return enterChat.getIP();
 	}
 
 	/**
 	 * Prompt for and return the desired screen name.
 	 */
 	private String getName() {
-		return JOptionPane.showInputDialog(
-				frame,
-				"Choose a screen name:",
-				"Screen name selection",
-				JOptionPane.PLAIN_MESSAGE);
+		//		return JOptionPane.showInputDialog(
+		//				frame,
+		//				"Choose a screen name:",
+		//				"Screen name selection",
+		//				JOptionPane.PLAIN_MESSAGE);
+		System.out.println(enterChat.getUserName());
+		return enterChat.getUserName();
 	}
 
 	/**
@@ -80,6 +104,7 @@ public class ChatClient {
 	 */
 	public void run() throws IOException {
 		// Make connection and initialize streams
+
 		String serverAddress = getServerAddress();
 		Socket socket = new Socket(serverAddress, 9001);
 		in = new BufferedReader(new InputStreamReader(
@@ -118,8 +143,10 @@ public class ChatClient {
 			});
 		}
 	}
-	
-	public static void main(String[] args) throws IOException {
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+
 		new ChatClient();
+
 	}
 }
