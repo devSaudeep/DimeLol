@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -5,6 +6,7 @@ import java.net.Socket;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class ChatClient {
 
@@ -14,6 +16,7 @@ public class ChatClient {
 	static JTextField textField = new JTextField(40);
 	static JTextArea messageArea = new JTextArea(8, 40);
 	static EnterChat enterChat = new EnterChat();
+	private JPanel contentPane;
 
 	/**
 	 * Constructs the client by laying out the GUI and registering a
@@ -32,10 +35,18 @@ public class ChatClient {
 		textField.setEditable(false);
 		messageArea.setEditable(false);
 		messageArea.setForeground(Color.WHITE);
-		messageArea.setBackground(new Color(102, 102, 102));
+		messageArea.setBackground(new Color(37,211,102));
 		messageArea.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
-		frame.getContentPane().add(textField, "South");
-		frame.getContentPane().add(new JScrollPane(messageArea), "Center");
+		
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		frame.setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout());
+		contentPane.add(textField, "South");
+		contentPane.add(new JScrollPane(messageArea), "Center");
+//		frame.getContentPane().add(textField, "South");
+//		frame.getContentPane().add(new JScrollPane(messageArea), "Center");
 		frame.pack();
 
 		// Add Listeners
@@ -51,7 +62,9 @@ public class ChatClient {
 			}
 		});
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		//		frame.setVisible(false);
+		
+		
+		
 		enterChat.setVisible(true);
 		enterChat.btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -61,15 +74,12 @@ public class ChatClient {
 				
 				enterChat.setVisible(false);
 				enterChat.dispose();
-				try {
-					run();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			
 			}
 		});
 		
+		frame.setVisible(true);
+		run();
 		
 
 	}

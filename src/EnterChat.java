@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
 
 public class EnterChat extends JFrame {
 
@@ -48,54 +51,45 @@ public class EnterChat extends JFrame {
 	 * Create the frame.
 	 */
 	public EnterChat() {
+		
+		//JFrame and JPanel
+		setFont(new Font("Arial", Font.PLAIN, 12));
+		setBackground(Color.WHITE);
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 400, 401);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
+		contentPane.setLayout(null);
 		
+		//IP Address
 		JLabel lblServerAddress = new JLabel("Enter the IP Address of the server");
-		GridBagConstraints gbc_lblServerAddress = new GridBagConstraints();
-		gbc_lblServerAddress.insets = new Insets(0, 0, 5, 5);
-		gbc_lblServerAddress.gridx = 4;
-		gbc_lblServerAddress.gridy = 3;
-		contentPane.add(lblServerAddress, gbc_lblServerAddress);
-		
-		GridBagConstraints gbc_ip_textField = new GridBagConstraints();
-		gbc_ip_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_ip_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_ip_textField.gridx = 4;
-		gbc_ip_textField.gridy = 4;
-		contentPane.add(ip_textField, gbc_ip_textField);
+		lblServerAddress.setFont(new Font("Arial", Font.PLAIN, 11));
+		lblServerAddress.setBounds(109, 180, 166, 14);
+		contentPane.add(lblServerAddress);
+		ip_textField.setBounds(109, 205, 166, 20);
+		contentPane.add(ip_textField);
 		ip_textField.setColumns(10);
 		
+		//Username
 		JLabel lblUsername = new JLabel("Enter your Username");
-		GridBagConstraints gbc_lblUsername = new GridBagConstraints();
-		gbc_lblUsername.insets = new Insets(0, 0, 5, 5);
-		gbc_lblUsername.gridx = 4;
-		gbc_lblUsername.gridy = 5;
-		contentPane.add(lblUsername, gbc_lblUsername);
-		
-		
-		GridBagConstraints gbc_username_textField = new GridBagConstraints();
-		gbc_username_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_username_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_username_textField.gridx = 4;
-		gbc_username_textField.gridy = 6;
-		contentPane.add(username_textField, gbc_username_textField);
+		lblUsername.setFont(new Font("Arial", Font.PLAIN, 11));
+		lblUsername.setBounds(141, 236, 102, 14);
+		contentPane.add(lblUsername);
+		username_textField.setBounds(109, 261, 166, 20);
+		contentPane.add(username_textField);
 		username_textField.setColumns(10);
+		btnEnter.setFont(new Font("Arial", Font.PLAIN, 11));
+		btnEnter.setBounds(150, 292, 83, 23);
+		contentPane.add(btnEnter);
 		
-		GridBagConstraints gbc_btnEnter = new GridBagConstraints();
-		gbc_btnEnter.insets = new Insets(0, 0, 0, 5);
-		gbc_btnEnter.gridx = 4;
-		gbc_btnEnter.gridy = 8;
-		contentPane.add(btnEnter, gbc_btnEnter);
+		//Logo
+		JLabel lblDimelolLogo = new JLabel("");
+		lblDimelolLogo.setIcon(new ImageIcon("C:\\Users\\LuisJonuel\\git\\DimeLol\\Images\\dimelol_logo.jpg"));
+		lblDimelolLogo.setBounds(0, 0, 384, 150);
+		contentPane.add(lblDimelolLogo);
 	}
 
 	public String getUserName() {
