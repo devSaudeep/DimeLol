@@ -76,11 +76,12 @@ public class ChatClient {
 
 				enterChat.setVisible(false);
 				enterChat.dispose();
+				frame.setVisible(true);
 
 			}
 		});
 
-		frame.setVisible(true);
+		
 		run();
 
 
