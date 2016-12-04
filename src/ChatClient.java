@@ -17,6 +17,7 @@ public class ChatClient {
 	static JTextArea messageArea = new JTextArea(8, 40);
 	static EnterChat enterChat = new EnterChat();
 	private JPanel contentPane;
+	private ChatServer serv;
 
 	/**
 	 * Constructs the client by laying out the GUI and registering a
@@ -73,18 +74,14 @@ public class ChatClient {
 				enterChat.username = enterChat.username_textField.getText();
 				enterChat.ip = enterChat.ip_textField.getText();
 
-
 				enterChat.setVisible(false);
 				enterChat.dispose();
 				frame.setVisible(true);
 
 			}
 		});
-
 		
 		run();
-
-
 	}
 
 
@@ -120,7 +117,7 @@ public class ChatClient {
 	public void run() throws IOException {
 		// Make connection and initialize streams
 		String serverAddress, name, sessionName;
-		
+
 		//keeps checking until serverAddress and username are not null
 		do{
 			serverAddress = getServerAddress();
@@ -132,7 +129,7 @@ public class ChatClient {
 			name = getName();
 			sessionName = "";
 		}while(getServerAddress() == null || getName() == null);
-		
+
 		// Process all messages from server, according to the protocol.
 		while (true) {
 			String line = in.readLine();
@@ -149,16 +146,18 @@ public class ChatClient {
 			}
 
 			frame.addWindowListener(new java.awt.event.WindowAdapter() {
+
 				@Override
 				public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 					if (JOptionPane.showConfirmDialog(frame, 
 							"Are you sure to close this window?", "Really Closing?", 
 							JOptionPane.YES_NO_OPTION,
-							JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-
+							JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 						System.exit(0);
+						
 					}
-				}	
+					serv.updateLog("\n" + getName() + " left the chat");
+				}
 			});
 		}
 	}

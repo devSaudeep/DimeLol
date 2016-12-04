@@ -5,9 +5,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashSet;
 
+import javax.net.ssl.SSLEngineResult.Status;
+
 public class ServerHandler extends Thread {
 	private String name;
 	private Socket socket;
+	private ChatServer serv;
 	private BufferedReader in;
 	private PrintWriter out;
 
@@ -28,8 +31,9 @@ public class ServerHandler extends Thread {
 	 * Constructs a handler thread, squirreling away the socket.
 	 * All the interesting work is done in the run method.
 	 */
-	public ServerHandler(Socket socket) {
+	public ServerHandler(Socket socket, ChatServer serv) {
 		this.socket = socket;
+		this.serv = serv;
 	}
 
 	/**
@@ -73,6 +77,7 @@ public class ServerHandler extends Thread {
 
 			for (PrintWriter writer : writers) {
 				writer.println("NAME" + name + " joined the chat");
+				serv.updateLog("\n" + name + " joined the chat");
 			}
 
 			// Accept messages from this client and broadcast them.
@@ -84,6 +89,7 @@ public class ServerHandler extends Thread {
 				}
 				for (PrintWriter writer : writers) {
 					writer.println("MESSAGE " + name + ": " + input);
+					serv.updateLog("\n" + "Message from " + name + ": " + input);
 				}
 			}
 		} catch (IOException e) {
@@ -93,7 +99,7 @@ public class ServerHandler extends Thread {
 			// writer from the sets, and close its socket.
 
 			for (PrintWriter writer : writers) {
-				writer.println(name );
+				writer.println(name);
 			}
 
 			if (name != null) {

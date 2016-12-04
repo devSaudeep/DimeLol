@@ -93,7 +93,7 @@ public class EnterChat extends JFrame {
 		
 		//Logo
 		JLabel lblDimelolLogo = new JLabel("");
-		lblDimelolLogo.setIcon(new ImageIcon("C:\\Users\\LuisJonuel\\git\\DimeLol\\Images\\dimelol_logo.jpg"));
+		lblDimelolLogo.setIcon(new ImageIcon("Images\\dimelol_logo.jpg"));
 		lblDimelolLogo.setBounds(0, 0, 384, 150);
 		contentPane.add(lblDimelolLogo);
 	}
