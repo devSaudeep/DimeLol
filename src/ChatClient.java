@@ -38,6 +38,7 @@ public class ChatClient {
 		messageArea.setBackground(new Color(37,211,102));
 		messageArea.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 
+		//create a JPanel for all the components
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,6 +48,7 @@ public class ChatClient {
 		contentPane.add(new JScrollPane(messageArea), "Center");
 		//		frame.getContentPane().add(textField, "South");
 		//		frame.getContentPane().add(new JScrollPane(messageArea), "Center");
+		frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		frame.pack();
 
 		// Add Listeners
