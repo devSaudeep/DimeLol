@@ -37,7 +37,7 @@ public class ChatClient {
 		messageArea.setForeground(Color.WHITE);
 		messageArea.setBackground(new Color(37,211,102));
 		messageArea.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
-		
+
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -45,8 +45,8 @@ public class ChatClient {
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(textField, "South");
 		contentPane.add(new JScrollPane(messageArea), "Center");
-//		frame.getContentPane().add(textField, "South");
-//		frame.getContentPane().add(new JScrollPane(messageArea), "Center");
+		//		frame.getContentPane().add(textField, "South");
+		//		frame.getContentPane().add(new JScrollPane(messageArea), "Center");
 		frame.pack();
 
 		// Add Listeners
@@ -62,25 +62,25 @@ public class ChatClient {
 			}
 		});
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		
-		
-		
+
+
+
 		enterChat.setVisible(true);
 		enterChat.btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				enterChat.username = enterChat.username_textField.getText();
 				enterChat.ip = enterChat.ip_textField.getText();
-				
-				
+
+
 				enterChat.setVisible(false);
 				enterChat.dispose();
-			
+
 			}
 		});
-		
+
 		frame.setVisible(true);
 		run();
-		
+
 
 	}
 
@@ -94,7 +94,7 @@ public class ChatClient {
 		//				"Enter IP Address of the Server:",
 		//				"Welcome to the Chatter",
 		//				JOptionPane.QUESTION_MESSAGE);
-	//	System.out.println(enterChat.ip);
+		//	System.out.println(enterChat.ip);
 		return enterChat.ip;
 	}
 
@@ -107,7 +107,7 @@ public class ChatClient {
 		//				"Choose a screen name:",
 		//				"Screen name selection",
 		//				JOptionPane.PLAIN_MESSAGE);
-	//	System.out.println(enterChat.username);
+		//	System.out.println(enterChat.username);
 		return enterChat.username;
 	}
 
@@ -116,16 +116,20 @@ public class ChatClient {
 	 */
 	public void run() throws IOException {
 		// Make connection and initialize streams
+		String serverAddress, name, sessionName;
 		
-		String serverAddress = getServerAddress();
-		Socket socket = new Socket(serverAddress, 9001);
-		in = new BufferedReader(new InputStreamReader(
-				socket.getInputStream()));
-		out = new PrintWriter(socket.getOutputStream(), true);
+		//keeps checking until serverAddress and username are not null
+		do{
+			serverAddress = getServerAddress();
+			Socket socket = new Socket(serverAddress, 9001);
+			in = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
+			out = new PrintWriter(socket.getOutputStream(), true);
 
-		String name = getName();
-		String sessionName = "";
-
+			name = getName();
+			sessionName = "";
+		}while(getServerAddress() == null || getName() == null);
+		
 		// Process all messages from server, according to the protocol.
 		while (true) {
 			String line = in.readLine();

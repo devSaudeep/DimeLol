@@ -93,13 +93,10 @@ public class EnterChat extends JFrame {
 	}
 
 	public String getUserName() {
-		
 		return username;
-		
 	}
 
 	public String getIP() {
 		return ip;
-		
 	}
 }
