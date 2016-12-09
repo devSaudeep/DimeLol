@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.IOException;
 import java.net.ServerSocket;
 import javax.swing.JFrame;
@@ -24,6 +25,8 @@ public class ChatServer extends Thread {
 	 */
 	//Create a sever status window
 	public ChatServer() throws IOException {
+		statusArea.setBackground(Color.black);
+		statusArea.setForeground(Color.GREEN);
 		statusArea.setEditable(false);
 		statusArea.append("The chat server is running.");
 		frame.getContentPane().add(new JScrollPane(statusArea), "Center");

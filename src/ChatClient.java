@@ -1,9 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.Socket;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.*;
@@ -21,6 +21,16 @@ public class ChatClient {
 	private ChatServer serv;
 	private JButton btnEnter;
 	private Socket socket;
+	private Color blue = new Color(204, 230, 255);
+	private Color orange =  new Color(255, 209, 179);
+	private Color blu = new Color(203, 179, 255);
+	private Color red = new Color(255, 153, 173);
+	private Color yellow = new Color(255, 255, 77);
+	private Color idk = new Color(223, 128, 255);
+	private Color k = new Color(255, 128, 128);
+	private Color y = new Color(179, 128, 255);
+	private Color[] colorArrayFaded = {blue, orange, blu, red, yellow, idk, k, y};
+	private Random rand = new Random();
 
 	/**
 	 * Constructs the client by laying out the GUI and registering a
@@ -35,10 +45,11 @@ public class ChatClient {
 	 */
 	public ChatClient() throws IOException{
 		// Layout GUI
-
+		messageArea.setForeground(colorArrayFaded[rand.nextInt(colorArrayFaded.length)]);
+		//messageArea.setBackground(colorArrayFaded[rand.nextInt(colorArrayFaded.length)]);
 		textField.setEditable(false);
 		messageArea.setEditable(false);
-		messageArea.setForeground(Color.WHITE);
+		//messageArea.setForeground(Color.WHITE);
 		messageArea.setBackground(new Color(37,211,102));
 		messageArea.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 
