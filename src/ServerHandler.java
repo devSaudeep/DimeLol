@@ -44,7 +44,7 @@ public class ServerHandler extends Thread {
 	 * broadcasts them.
 	 */
 	public void run() {
-		
+
 		try {
 			// Create character streams for the socket.
 			in = new BufferedReader(new InputStreamReader(
@@ -95,9 +95,9 @@ public class ServerHandler extends Thread {
 		} catch (IOException e) {
 			System.out.println(e);
 		} finally {
+			
 			// This client is going down!  Remove its name and its print
 			// writer from the sets, and close its socket.
-
 			for (PrintWriter writer : writers) {
 				writer.println(name);
 			}

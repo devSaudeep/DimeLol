@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.Socket;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,8 @@ public class ChatClient {
 	static EnterChat enterChat = new EnterChat();
 	private JPanel contentPane;
 	private ChatServer serv;
+	private JButton btnEnter;
+	private Socket socket;
 
 	/**
 	 * Constructs the client by laying out the GUI and registering a
@@ -67,7 +70,7 @@ public class ChatClient {
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 
-
+		
 		enterChat.setVisible(true);
 		enterChat.btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -117,11 +120,12 @@ public class ChatClient {
 	public void run() throws IOException {
 		// Make connection and initialize streams
 		String serverAddress, name, sessionName;
+		
 
 		//keeps checking until serverAddress and username are not null
 		do{
 			serverAddress = getServerAddress();
-			Socket socket = new Socket(serverAddress, 9001);
+			socket = new Socket(serverAddress, 9001);
 			in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 			out = new PrintWriter(socket.getOutputStream(), true);
@@ -153,6 +157,14 @@ public class ChatClient {
 							"Are you sure to close this window?", "Really Closing?", 
 							JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+						try {
+							socket.close();
+							in.close();
+							out.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						System.exit(0);
 						
 					}
