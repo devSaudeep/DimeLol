@@ -43,14 +43,14 @@ public class ChatClient {
 	 * @throws IOException 
 	 * @throws InterruptedException 
 	 */
-	public ChatClient() throws IOException{
+	public ChatClient() throws IOException {
 		// Layout GUI
 		messageArea.setForeground(colorArrayFaded[rand.nextInt(colorArrayFaded.length)]);
 		//messageArea.setBackground(colorArrayFaded[rand.nextInt(colorArrayFaded.length)]);
 		textField.setEditable(false);
 		messageArea.setEditable(false);
-		//messageArea.setForeground(Color.WHITE);
-		messageArea.setBackground(new Color(37,211,102));
+		messageArea.setBackground(Color.WHITE);
+//		messageArea.setBackground(new Color(37,211,102));
 		messageArea.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 
 		//create a JPanel for all the components
