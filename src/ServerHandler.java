@@ -77,7 +77,7 @@ public class ServerHandler extends Thread {
 
 			for (PrintWriter writer : writers) {
 				writer.println("NAME" + name + " joined the chat");
-				serv.updateLog("\n" + name + " joined the chat");
+				
 			}
 
 			// Accept messages from this client and broadcast them.
@@ -89,7 +89,6 @@ public class ServerHandler extends Thread {
 				}
 				for (PrintWriter writer : writers) {
 					writer.println("MESSAGE " + name + ": " + input);
-					serv.updateLog("\n" + "Message from " + name + ": " + input);
 				}
 			}
 		} catch (IOException e) {

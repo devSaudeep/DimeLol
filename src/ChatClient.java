@@ -179,7 +179,6 @@ public class ChatClient {
 						System.exit(0);
 						
 					}
-					serv.updateLog("\n" + getName() + " left the chat");
 				}
 			});
 		}

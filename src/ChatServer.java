@@ -45,10 +45,6 @@ public class ChatServer extends Thread {
 		
 	}
 	
-	public void updateLog(String str) {
-		statusArea.append(str);
-	}
-	
 	public static void main(String[] args) throws IOException {
 		new ChatServer();
 	}
