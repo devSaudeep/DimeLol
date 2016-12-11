@@ -90,11 +90,15 @@ public class ChatClient {
 
 				enterChat.setVisible(false);
 				enterChat.dispose();
-				frame.setVisible(true);
 
 			}
 		});
+<<<<<<< HEAD
 		
+=======
+
+		frame.setVisible(true);
+>>>>>>> parent of f056f3f... Arreglo de funcionalidad
 		run();
 	}
 
