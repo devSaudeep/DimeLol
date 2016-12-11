@@ -37,7 +37,7 @@ public class ChatServer extends Thread {
 		ServerSocket listener = new ServerSocket(PORT);
 		try {
 			while (true) {
-				new ServerHandler(listener.accept(), this).start();
+				new ServerHandler(listener.accept()).start();
 			}
 		} finally {
 			listener.close();

@@ -10,7 +10,6 @@ import javax.net.ssl.SSLEngineResult.Status;
 public class ServerHandler extends Thread {
 	private String name;
 	private Socket socket;
-	private ChatServer serv;
 	private BufferedReader in;
 	private PrintWriter out;
 
@@ -31,9 +30,8 @@ public class ServerHandler extends Thread {
 	 * Constructs a handler thread, squirreling away the socket.
 	 * All the interesting work is done in the run method.
 	 */
-	public ServerHandler(Socket socket, ChatServer serv) {
+	public ServerHandler(Socket socket) {
 		this.socket = socket;
-		this.serv = serv;
 	}
 
 	/**
