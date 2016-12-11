@@ -93,12 +93,8 @@ public class ChatClient {
 
 			}
 		});
-<<<<<<< HEAD
-		
-=======
-
 		frame.setVisible(true);
->>>>>>> parent of f056f3f... Arreglo de funcionalidad
+
 		run();
 	}
 
