@@ -134,7 +134,7 @@ public class ChatClient {
 		//keeps checking until serverAddress and username are not null
 		do{
 			serverAddress = getServerAddress();
-			socket = new Socket(serverAddress, 9001);
+			socket = new Socket(serverAddress, 1212);
 			in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 			out = new PrintWriter(socket.getOutputStream(), true);

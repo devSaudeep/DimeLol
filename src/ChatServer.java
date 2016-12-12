@@ -14,7 +14,7 @@ public class ChatServer extends Thread {
 	/**
 	 * The port that the server listens on.
 	 */
-	private static final int PORT = 9001;
+	private static final int PORT = 1212;
 	
 	public static JFrame frame = new JFrame("Server");
 	public static JTextArea statusArea = new JTextArea(8, 40);
@@ -43,6 +43,10 @@ public class ChatServer extends Thread {
 			listener.close();
 		}
 		
+	}
+	
+	public void updateLog(String str) {
+		statusArea.append(str);
 	}
 	
 	public static void main(String[] args) throws IOException {
