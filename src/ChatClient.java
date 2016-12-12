@@ -50,7 +50,7 @@ public class ChatClient {
 		textField.setEditable(false);
 		messageArea.setEditable(false);
 		messageArea.setBackground(Color.WHITE);
-//		messageArea.setBackground(new Color(37,211,102));
+		//		messageArea.setBackground(new Color(37,211,102));
 		messageArea.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 
 		//create a JPanel for all the components
@@ -81,7 +81,7 @@ public class ChatClient {
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 
-		
+
 		enterChat.setVisible(true);
 		enterChat.btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -129,11 +129,13 @@ public class ChatClient {
 	public void run() throws IOException {
 		// Make connection and initialize streams
 		String serverAddress, name, sessionName;
-		
+
 
 		//keeps checking until serverAddress and username are not null
 		do{
-			serverAddress = getServerAddress();
+			serverAddress = enterChat.getIP();
+			if(serverAddress != null)
+				System.out.println("\n"+serverAddress);
 			socket = new Socket(serverAddress, 1212);
 			in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
@@ -175,7 +177,7 @@ public class ChatClient {
 							e.printStackTrace();
 						}
 						System.exit(0);
-						
+
 					}
 				}
 			});
